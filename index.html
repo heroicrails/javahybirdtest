@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>Mobile Layout</title>
+	<style>
+		/* 초기화 */
+		*{ margin: 0;padding: 0; }
+		body{
+			font-family: 'Helvetica', sans-serif;
+		}
+		li{ list-style-type: none; }
+		a{ text-decoration: none; }
+
+		/* 헤더 */
+		#main_header{
+			height: 45px;
+			background: url("images/header_background.png");
+
+			position: relative;
+			text-align: center;
+			line-height: 45px;
+		}
+		#main_header > h1{
+			color: white;
+		}
+		#main_header > a.left, #main_header > label.right{
+			display: block;
+			height: 32px;
+			position: absolute;
+		}
+
+		/* 헤더 버튼 */
+		#main_header > a.left{
+			width: 62px;
+			left: 5px; top: 7px;
+			background: url("images/sprites.png");
+			background-position: 0 0;
+			text-indent: -9999px;
+		}
+		#main_header > label.right{
+			width: 32px;
+			right: 5px; top: 7px;
+			background: url("images/sprites.png");
+			background-position: -62px 0;
+			text-indent: -9999px;
+		}
+
+		#toggle{ display: none; }
+
+		/* 토글 목록을 비표시 */
+		#toggle + #wrap > #toggle_gnb_wrap{
+			display: none;
+		}
+
+		/* 토글 버튼을 채크하면 표시(상태선택자) */
+		#toggle:checked + #wrap > #toggle_gnb_wrap{
+			display: block;
+		}
+
+		/* 토글 버튼 디자인 */
+		#toggle_gnb_wrap{
+			background: #363636;
+			padding: 15px;
+		}
+		#toggle_gnb{
+			background: #fff;
+			padding: 5px;
+		}
+
+		/* 토글 버튼 고정 크기 */
+		#toggle_gnb > ul{ overflow: hidden; }
+		#toggle_gnb > ul > li{
+			width: 80px; 
+			float: left;
+		}
+
+		#top_gnb{
+			overflow: hidden;
+			background: #b42111;
+			border-bottom: 1px solid black;
+		}
+		#top_gnb > div > a{
+			float: left;
+			/* 가변 크기 */
+			width: 25%;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			color: white;
+		}
+		#bottom_gnb{
+			display: table;
+			width: 100%;
+			border-bottom: 1px solid black;
+		}
+		#bottom_gnb > div{
+			display: table-cell;
+			position: relative;
+		}
+		#bottom_gnb > div > a{
+			display: block;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+		}
+
+		/* 가상 요소 기법 */
+		#bottom_gnb > div > a::before{
+			content: "";
+			display: block;
+			width: 1px; height: 15px;
+			border-left: 1px solid black;
+			position: absolute;
+			top: 9px; left: -1px;
+		}
+
+		#section_header{ padding: 20px; }
+		#section_article{ padding: 10px; }
+
+		#main_footer{
+			padding: 10px;
+			border-top: 3px solid black;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<input type="checkbox" id="toggle" />	
+	<div id="wrap">
+		<header id="main_header">
+			<a href="#" class="left">Main</a>
+			<h1>App Title</h1>
+			<label for="toggle" class="right" onclick="">toggle</label>
+		</header>
+
+		<div id="toggle_gnb_wrap">
+			<div id="toggle_gnb">
+				<ul>
+					<li><a href="#">버튼</a></li>
+					<li><a href="#">버튼</a></li>
+					<li><a href="#">버튼</a></li>
+					<li><a href="#">버튼</a></li>
+					<li><a href="#">버튼</a></li>
+					<li><a href="#">버튼</a></li>
+					<li><a href="#">버튼</a></li>
+					<li><a href="#">버튼</a></li>
+				</ul>
+			</div>
+		</div><!-- end toggle_gnb -->
+
+		<nav id="top_gnb">
+			<div><a href="#">버튼</a></div>
+			<div><a href="#">버튼</a></div>
+			<div><a href="#">버튼</a></div>
+			<div><a href="#">버튼</a></div>
+		</nav>
+
+		<nav id="bottom_gnb">
+			<div><a href="#">버튼</a></div>
+			<div><a href="#">버튼</a></div>
+			<div><a href="#">버튼</a></div>
+			<div><a href="#">버튼</a></div>
+			<div><a href="#">버튼</a></div>
+		</nav>
+
+		<section id="main_section">
+			<header id="section_header">
+				<h1>Section Title</h1>
+				작성일: <time>2016-12-31</time>		
+			</header>
+			<figure id="section_image">
+				<img width="100%" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTb54gL1iUrDS7sk2qL7FkkXVfMmn93f55_bZXVkFXazjP8Z-ixGQ" alt="">
+			</figure>
+			<article id="section_article">
+				<h1>article title</h1>
+				<p>여기에 글을 작성... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet repudiandae nam officiis quia sint! Et odio dolores sint error, praesentium eveniet quo repudiandae, a aspernatur debitis quasi placeat nulla quae.</p>
+			</article>
+		</section>
+
+		<footer id="main_footer">
+			<p>copyright Lorem ipsum dolor sit amet.</p>
+			<p>웹 또는 앱 정보를 작성...</p>
+		</footer>
+
+	</div><!-- end wrap -->
+</body>
+</html>
